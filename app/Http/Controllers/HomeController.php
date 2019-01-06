@@ -67,12 +67,12 @@ class HomeController extends Controller
     public function informacionTransaccion($ticket)
     {
         $transac = $this->obtenerSesionTransaccion($ticket);
-        if (!$transac->getSessionID()) {
+        if (!$transac->getTransactionID()) {
             $error = 'No hay transacción en la sesión para el número de referencia.';
             return view('error', compact('error'));
         }
         $obj = new PlaceToPay();
-        $estadoTra = $obj->obtenerSesionTransaccion($transac->getSessionID());
+        $estadoTra = $obj->obtenerSesionTransaccion($transac->getTransactionID());
         return view('transaccion_men', compact('estadoTra'));
     }
 
